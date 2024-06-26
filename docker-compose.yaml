@@ -1,0 +1,32 @@
+services:
+  webcounter-backend:
+    image: jonatasbaldin/webcounter-backend
+    ports:
+      - "5001:5000"
+    environment:
+      - DB_NAME=countdb
+      - DB_USER=mary
+      - DB_PASSWORD=123456A!
+      - DB_HOST=webcounter-db
+    depends_on:
+      - webcounter-db
+    command: bash -c 'sleep 10 && python app.py'
+
+  webcounter-frontend:
+    image: jonatasbaldin/webcounter-frontend
+    ports:
+      - "8080:80"
+    depends_on:
+      - webcounter-backend
+      
+  webcounter-db:
+    image: postgres:16.3
+    environment:
+      POSTGRES_DB: countdb
+      POSTGRES_USER: mary
+      POSTGRES_PASSWORD: 123456A!
+    volumes:
+      - webcounter-db:/var/lib/postgresql/data
+
+volumes:
+  webcounter-db:

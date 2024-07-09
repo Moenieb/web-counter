@@ -33,7 +33,7 @@ jobs:
     - name: Run tests
       run: python tests.py
 
-  # Added two more test to demonstrate how tests can run in parallel.
+  # Added two more test to demonstrate how tests can run in parallel. Check Actions on Github to see
 
   integration-test:
     runs-on: ubuntu-latest

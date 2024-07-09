@@ -40,11 +40,11 @@ jobs:
 
     steps:
     - name: Simulate integration test
-      run: echo "Run integration test" && sleep 5 && "Integration test pass!!"
+      run: echo "Run integration test" && sleep 5 && echo "Integration test pass!!"
 
   linting:
     runs-on: ubuntu-latest
 
     steps:
     - name: Simulate linting
-      run: echo "Run linting" && sleep 5 && "Linting pass!!"
+      run: echo "Run linting" && sleep 5 && echo "Linting pass!!"

@@ -32,3 +32,19 @@ jobs:
     # Run python app in directory also command line
     - name: Run tests
       run: python tests.py
+
+  # Added two more test to demonstrate how tests can run in parallel.
+
+  integration-test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Simulate integration test
+      run: echo "Run integration test" && sleep 5 && "Integration test pass!!"
+
+  linting:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Simulate linting
+      run: echo "Run linting" && sleep 5 && "Linting pass!!"

@@ -1,4 +1,4 @@
-# Web Counter
+# Web Counter - This is the forked version of Jojo's repo
 
 # Deploying on Ubuntu (EC2)
 First, clone the repository in the `/home/ubuntu/app` folder:

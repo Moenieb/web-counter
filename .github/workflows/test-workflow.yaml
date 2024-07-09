@@ -6,7 +6,7 @@ on:
     branches:
     - main
 
-env: #environment variable so that tests pass. This is just to demo tests
+env: #environment variable so that 'Run tests' pass. This is just to demo tests
   TEST: 'OK'
 
 jobs:
@@ -18,14 +18,17 @@ jobs:
     # using github action
       uses: actions/checkout@v4
 
+    # another example of using github actions
     - name: Setup python
       uses: actions/setup-python@v5
       with:
         python-version: '3.8'
 
+    #This example to show how to install from command line 
     - name: Install dependencies
       run: |
         pip install -r requirements.txt
 
+    # Run python app in directory also command line
     - name: Run tests
       run: python tests.py

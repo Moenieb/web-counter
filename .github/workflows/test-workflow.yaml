@@ -20,9 +20,11 @@ jobs:
   #     matrix:
   #       version: [10, 12, 14]
   #       os: [ubuntu-latest, windows-latest]
-    strategy:
-      matrix:
-        python-version: [3.8, 3.9]
+
+    # Remember to change the python-version as well when doing the matrix strategy
+    # strategy: 
+    #   matrix:
+    #     python-version: [3.8, 3.9]
     runs-on: ubuntu-latest 
 
     steps:
@@ -34,8 +36,8 @@ jobs:
     - name: Setup python
       uses: actions/setup-python@v5
       with:
-        python-version: ${{ matrix.python-version }}
-        #python-version: '3.8'
+        # python-version: ${{ matrix.python-version }}
+        python-version: "3.8"
 
     #This example to show how to install from command line 
     - name: Install dependencies
@@ -61,3 +63,27 @@ jobs:
     steps:
     - name: Simulate linting
       run: echo "Run linting" && sleep 5 && echo "Linting pass!!"
+
+  build: 
+    runs-on: ubuntu-latest
+
+    needs: [pythn-est, integration-test, linting]
+
+    steps:
+    - name: Check out code
+      uses: actions/checkout@v4
+
+    - name: Building it
+      run: echo "Software built!"
+
+  deploy-staging:
+    runs-on: ubuntu latest
+
+    needs: [build]
+
+    steps:
+    - name: Check out code
+      uses: actions/checkout@v4
+
+    - name: Deploy to staging
+      run: echo "Software deployed!"

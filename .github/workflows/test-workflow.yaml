@@ -1,0 +1,30 @@
+name: Python Test CI
+
+# github events
+on:
+  push:
+    branches:
+    - main
+
+env: #environment variable so that tests pass. This is just to demo tests
+  TEST: 'OK'
+
+jobs:
+  python-test:
+
+    steps:
+    - name: Check out the code
+    # using github action
+      uses: actions/checkout@v4
+
+    - name: Setup python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.8'
+
+    - name: Install dependencies
+      run: |
+        pip install -r requirements.txt
+
+    - name: Run tests
+      run: python tests.py

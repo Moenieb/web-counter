@@ -11,6 +11,18 @@ env: #environment variable so that 'Run tests' pass. This is just to demo tests
 
 jobs:
   python-test:
+
+  #Add strategy matrix to test multiple version of python as an example
+  #You can even have muliple matrices e.g. This is going to run six times
+  # jobs:
+  # example_matrix:
+  #   strategy:
+  #     matrix:
+  #       version: [10, 12, 14]
+  #       os: [ubuntu-latest, windows-latest]
+    strategy:
+      matrix:
+        python-version: [3.8, 3.9]
     runs-on: ubuntu-latest 
 
     steps:
@@ -22,7 +34,8 @@ jobs:
     - name: Setup python
       uses: actions/setup-python@v5
       with:
-        python-version: '3.8'
+        python-version: ${{ matrix.python-version }}
+        #python-version: '3.8'
 
     #This example to show how to install from command line 
     - name: Install dependencies
